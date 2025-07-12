@@ -1,11 +1,22 @@
 <% content_for :title, "New todo" %>
 
-<h1>New todo</h1>
-
-<%= render "form", todo: @todo %>
-
-<br>
-
-<div>
-  <%= link_to "Back to todos", todos_path %>
+<div class="md:grid md:grid-cols-3 md:gap-6">
+  <div class="md:col-span-1">
+    <div class="px-4 sm:px-0">
+      <h1 class="text-2xl font-bold text-gray-900 mb-2">New Todo</h1>
+      <p class="mt-1 text-sm text-gray-600">
+        Create a new todo to track your tasks.
+      </p>
+      <div class="mt-6">
+        <%= link_to "Back to Todos", todos_path, class: "text-indigo-600 hover:text-indigo-900" %>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5 md:mt-0 md:col-span-2">
+    <div class="shadow sm:rounded-md sm:overflow-hidden">
+      <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+        <%= render "form", todo: @todo %>
+      </div>
+    </div>
+  </div>
 </div>

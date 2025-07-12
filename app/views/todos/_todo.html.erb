@@ -1,13 +1,51 @@
-<div id="<%= dom_id todo %>">
-  <p>
-    <strong>Name:</strong>
-    <%= todo.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= todo.description %>
-  </p>
-
-  <%= link_to todo.project.name, project_path(todo.project) if todo.project %>
+<div id="<%= dom_id todo %>" class="bg-white shadow overflow-hidden sm:rounded-lg hover:shadow-md transition-shadow">
+  <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
+    <h3 class="text-lg leading-6 font-medium text-gray-900 flex items-center">
+      <% if todo.completed %>
+        <span class="mr-2 flex h-5 w-5 items-center justify-center rounded-full bg-green-100">
+          <svg class="h-3.5 w-3.5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        </span>
+      <% else %>
+        <span class="mr-2 flex h-5 w-5 items-center justify-center rounded-full border-2 border-gray-300"></span>
+      <% end %>
+      <%= todo.name %>
+    </h3>
+    <div class="flex space-x-2">
+      <% if todo.priority && todo.priority > 0 %>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+          Priority: <%= todo.priority %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="border-t border-gray-200">
+    <dl>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Description</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= todo.description.present? ? todo.description : "No description provided" %></dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Project</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+          <%= link_to todo.project.name, project_path(todo.project), class: "text-indigo-600 hover:text-indigo-900" %>
+        </dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Status</dt>
+        <dd class="mt-1 text-sm sm:col-span-2 sm:mt-0">
+          <% if todo.completed %>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              Completed
+            </span>
+          <% else %>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+              In Progress
+            </span>
+          <% end %>
+        </dd>
+      </div>
+    </dl>
+  </div>
 </div>
