@@ -1,0 +1,11 @@
+<% content_for :title, "New todo" %>
+
+<h1>New todo</h1>
+
+<%= render "form", todo: @todo %>
+
+<br>
+
+<div>
+  <%= link_to "Back to todos", todos_path %>
+</div>
