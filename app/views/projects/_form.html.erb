@@ -1,0 +1,22 @@
+<%= form_with model: project do |f| %>
+
+  <% if project.errors.any? %>
+    <div class="errors">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <ul>
+        <% project.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
