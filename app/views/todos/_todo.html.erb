@@ -9,4 +9,5 @@
     <%= todo.description %>
   </p>
 
+  <%= link_to todo.project.name, project_path(todo.project) if todo.project %>
 </div>

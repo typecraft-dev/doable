@@ -21,6 +21,15 @@
     <%= form.textarea :description %>
   </div>
 
+  <%= form.label :completed %>
+  <%= form.check_box :completed %>
+
+  <%= form.label :priority %>
+  <%= form.number_field :priority %>
+
+  <%= form.label :project_id %>
+  <%= form.collection_select :project_id, Project.all, :id, :name, prompt: "Select a project" %>
+
   <div>
     <%= form.submit %>
   </div>
